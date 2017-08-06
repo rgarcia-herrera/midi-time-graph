@@ -13,3 +13,6 @@ Run thusly
 will plot this:
 
 <img src="string_trio.png">
+
+
+Nice string trio :-)
