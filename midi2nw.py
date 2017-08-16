@@ -3,11 +3,9 @@ from midi.constants import NOTE_NAME_MAP_SHARP
 import argparse
 import networkx as nx
 
-notes = {NOTE_NAME_MAP_SHARP[name]: name.replace('s', '#').replace('_', '')
-         for name in NOTE_NAME_MAP_SHARP}
-
 parser = argparse.ArgumentParser(
-    description='plot a midi file')
+    description="""create networks from tracks using intervals
+                   as edges, write them as dot files""")
 
 parser.add_argument('music',
                     type=argparse.FileType('r'),
@@ -16,6 +14,9 @@ parser.add_argument('music',
 args = parser.parse_args()
 
 pattern = midi.read_midifile(args.music)
+
+notes = {NOTE_NAME_MAP_SHARP[name]: name.replace('s', '#').replace('_', '')
+         for name in NOTE_NAME_MAP_SHARP}
 
 l = pattern[1]
 
@@ -38,12 +39,20 @@ for track in pattern:
         tracks.append((x, y))
 
 
+colors = ['orange', 'green', 'red']
 n = 0
 for track in tracks:
     G = nx.DiGraph()
     for i in range(len(track[1])-1):
         G.add_edge(notes[track[1][i]],
-                   notes[track[1][i+1]])
+                   notes[track[1][i+1]],
+                   color=colors[n])
+
+        G.add_node(notes[track[1][i]],
+                   color=colors[n])
+
+        G.add_node(notes[track[1][i+1]],
+                   color=colors[n])
 
     nx.drawing.nx_pydot.write_dot(G, "g%s.dot" % n)
     n += 1

@@ -14,5 +14,12 @@ will plot this:
 
 <img src="string_trio.png">
 
+<table>
+<tr>
+<td>g0.dot.png</td>
+<td>g1.dot.png</td>
+<td>g2.dot.png</td>
+</tr>
+</table>
 
 Nice string trio :-)
