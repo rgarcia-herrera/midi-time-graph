@@ -1,9 +1,10 @@
 import midi
+from midi.constants import NOTE_NAME_MAP_SHARP
 import argparse
 import networkx as nx
-from pprint import pprint
-import matplotlib.pyplot as plt
 
+notes = {NOTE_NAME_MAP_SHARP[name]: name.replace('s', '#').replace('_', '')
+         for name in NOTE_NAME_MAP_SHARP}
 
 parser = argparse.ArgumentParser(
     description='plot a midi file')
@@ -37,11 +38,12 @@ for track in pattern:
         tracks.append((x, y))
 
 
-G = nx.DiGraph()
-
+n = 0
 for track in tracks:
+    G = nx.DiGraph()
     for i in range(len(track[1])-1):
-        G.add_edge(track[1][i], track[1][i+1], t=track[0][i+1]-track[0][i])
+        G.add_edge(notes[track[1][i]],
+                   notes[track[1][i+1]])
 
-    nx.draw_networkx(G)
-    plt.show()
+    nx.drawing.nx_pydot.write_dot(G, "g%s.dot" % n)
+    n += 1
