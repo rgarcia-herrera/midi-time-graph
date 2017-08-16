@@ -16,9 +16,9 @@ will plot this:
 
 <table>
 <tr>
-<td>g0.dot.png</td>
-<td>g1.dot.png</td>
-<td>g2.dot.png</td>
+<td><img src="g0.dot.png" width="100%"></td>
+<td><img src="g1.dot.png" width="100%"></td>
+<td><img src="g2.dot.png" width="100%"></td>
 </tr>
 </table>
 
