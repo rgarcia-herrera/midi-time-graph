@@ -1,4 +1,4 @@
-# cuddly-succotash
+# Time Series
 
 
 This script will line-plot note events from midi tracks.
@@ -14,6 +14,8 @@ will plot this:
 
 <img src="string_trio.png">
 
+
+# Directed Graph
 <table>
 <tr>
 <td><img src="g0.dot.png" width="100%"></td>
